@@ -12,6 +12,7 @@ function Dynamicssheet()
 
 	var styleElem = document.createElement('style');
 	styleElem.setAttribute('type', 'text/css');
+	document.getElementsByTagName('head')[0].appendChild(styleElem);
 
 	var styles = {};
 
@@ -21,18 +22,18 @@ function Dynamicssheet()
 
 	this.add = function(rule, property, value)
 	{
-		if(rule && typeof rule === 'string')
+		if(typeof rule === 'string')
 		{
 			styles[rule] = styles[rule] || {};
 
-			if(property instanceof 'string' && value)
+			if(typeof property === 'string' && value)
 			{
-				styles[property] = value;
+				styles[rule][property] = value;
 			}
-			else if(property instanceof 'object')
+			else if(typeof property === 'object')
 			{
 				for(var prop in property)
-					if(rule.hasOwnProperty(rl) && property[prop])
+					if(property.hasOwnProperty(prop) && property[prop])
 						styles[rule][prop] = property[prop];
 			}
 			else
@@ -71,7 +72,7 @@ function Dynamicssheet()
 
 	this.remove = function(rule, property)
 	{
-		if(rule instanceof Array)
+		if(typeof rule === 'object' && rule instanceof Array)
 		{
 			for(var i = 0; i < rule.length; i++)
 				delete styles[rule[i]];
@@ -93,6 +94,11 @@ function Dynamicssheet()
 
 		writeStyles();
 		return _this;
+	};
+
+	this.getModel = function()
+	{
+		return JSON.parse(JSON.stringify(styles));
 	};
 
 	function writeStyles()
@@ -117,6 +123,4 @@ function Dynamicssheet()
 	{
 		console.warn('Invalid arguments passed to Dynamicssheet instance. Try again?');
 	}
-
-	document.getElementsByTagName('head')[0].appendChild(styleElem);
 }
