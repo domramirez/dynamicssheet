@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dynamicssheet Example</title>
+	<script type="text/javascript" src="dynamicssheet.js"></script>
+</head>
+<body>
+
+<h1>Dynamicssheet</h1>
+
+<h2>Getting Started</h2>
+
+<p>To start, simply create a new <span class="code">Dynamicssheet</span> object:</p>
+
+<pre>
+var css = new Dynamicssheet();
+</pre>
+
+<h2>Adding Styles</h2>
+
+<p>Once an instance is created, it will create its own <span class="code">style</span> element to which you can add styles in one of three ways:</p>
+
+<pre>
+css.add(ruleSetObject) - multiple style rules at once (shown in example below)
+css.add(ruleString, styleSetObj) - multiple styles at once
+css.add(ruleString, propertyString, valueString) - one at a time
+</pre>
+
+<h2>Removing Styles</h2>
+
+<p>You can remove styles in large batches or one-at-a-time:</p>
+
+<pre>
+css.remove(ruleArray) - remove multiple rules at once by passing an array of strings which match rules
+css.remove(ruleString) - remove one full rule outright
+css.remove(ruleString, propertyString) - remove a single style
+</pre>
+
+<h2>Example</h2>
+
+<p>Obviously I should offer a few more examples one day, but for now, here's this page's css styling, completely with the <span class="code">Dynamicssheet.add()</span> method.</p>
+
+<pre>
+css.add({
+	'body': {
+		'color': '#777',
+		'font-family': 'Arial, sans-serif',
+		'max-width': '900px',
+		'margin': '2em auto'
+	},
+	'a': {
+		'border-bottom': '1px solid #777',
+		'text-decoration': 'none',
+		'color': '#999'
+	},
+	'a:hover': {
+		'border-bottom': '1px solid transparent',
+		'opacity': '0.8',
+		'-webkit-transition': 'all .25s',
+		'-moz-transition': 'all .25s',
+		'-ms-transition': 'all .25s',
+		'-o-transition': 'all .25s',
+		'transition': 'all .25s'
+	},
+	'pre': {
+		'background-color': '#eee',
+		'border-left': '2px solid #777',
+		'margin-left': '2em',
+		'padding': '1em'
+	}
+});
+</pre>
+
+<a href="https://github.com/domramirez/dynamicssheet">View the source code to learn more about this utility.</a>
+
+<script type="text/javascript">
+
+	var css = new Dynamicssheet();
+
+	css.add({
+		'body': {
+			'color': '#777',
+			'font-family': 'Arial, sans-serif',
+			'max-width': '900px',
+			'margin': '2em auto'
+		},
+		'a': {
+			'border-bottom': '1px solid #777',
+			'text-decoration': 'none',
+			'color': '#999'
+		},
+		'a:hover': {
+			'border-bottom': '1px solid transparent',
+			'opacity': '0.8',
+			'-webkit-transition': 'all .25s',
+			'-moz-transition': 'all .25s',
+			'-ms-transition': 'all .25s',
+			'-o-transition': 'all .25s',
+			'transition': 'all .25s'
+		},
+		'pre': {
+			'background-color': '#eee',
+			'border-left': '2px solid #777',
+			'margin-left': '2em',
+			'padding': '1em'
+		}
+	});
+
+</script>
+
+</body>
+</html>
