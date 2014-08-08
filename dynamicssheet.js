@@ -66,6 +66,7 @@ function Dynamicssheet()
 		return _this;
 	};
 
+	// *.remove() - remove all rules
 	// *.remove(ruleArray) - remove multiple rules at once
 	// *.remove(ruleString) - remove one full rule
 	// *.remove(ruleString, propertyString) - remove a single style
@@ -76,6 +77,12 @@ function Dynamicssheet()
 		{
 			for(var i = 0; i < rule.length; i++)
 				delete styles[rule[i]];
+		}
+		if(!(rule || property))
+		{
+			for(var i in styles)
+				if(styles.hasOwnProperty(i))
+					delete styles[i];
 		}
 		else if(rule && !property)
 		{
