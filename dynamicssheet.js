@@ -123,7 +123,10 @@ function Dynamicssheet()
 			cssContents += '} \n\n';
 		}
 
-		styleElem.innerHTML = cssContents;
+		if(styleElem.styleSheet && typeof styleElem.styleSheet.cssText !== 'undefined')
+			styleElem.styleSheet.cssText = cssContents; //IE8 Fix
+		else
+			styleElem.innerHTML = cssContents; //Modern Browsers
 	}
 
 	function invalidArgsWarning()
